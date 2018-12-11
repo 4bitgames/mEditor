@@ -8,6 +8,7 @@ app.post('/upload/:projectID', jsonParser, function (req, res) {
     const projectID = req.params.projectID;
     const fPath     = `files/${projectID}.json`;
     const newData   = req.body;
+    console.log("newData", newData)
 
     let projectData = {};
     if (fs.existsSync(fPath)) {
@@ -34,6 +35,7 @@ app.post('/download/:projectID', jsonParser, function (req, res) {
     const projectID = req.params.projectID;
     const fPath     = `files/${projectID}.json`;
     const manifest  = req.body;
+    console.log("manifest",manifest)
 
     let projectData = {};
     if (fs.existsSync(fPath)) {
