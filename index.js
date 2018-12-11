@@ -17,7 +17,7 @@ app.post('/upload/:projectID', jsonParser, function (req, res) {
 
     let outputData = {};
     for (box in newData){
-        if (!projectData[box].version || (newData[box].version > projectData[box].version)){
+        if (!projectData[box] || !projectData[box].version || (newData[box].version > projectData[box].version)){
             projectData[box] = newData[box];
         }else{
             outputData[box] = projectData[box]
