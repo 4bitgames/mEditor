@@ -25,6 +25,10 @@ app.post('/upload/:projectID', jsonParser, function (req, res) {
 
     fs.writeFileSync(fPath, JSON.stringify(projectData, null, 2));
 
+    fs.writeFile(fPath, JSON.stringify(projectData, null, 2), function(error){
+        console.log(error)
+    })
+
     console.log("Upload:", fPath)
     res.send(outputData);
 });
