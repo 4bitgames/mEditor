@@ -8,7 +8,7 @@ app.post('/upload/:projectID', jsonParser, function (req, res) {
     const projectID = req.params.projectID;
     const fPath     = `files/${projectID}.json`;
     const newData   = req.body;
-    console.log("newData", newData)
+    console.log("newData", req)
 
     let projectData = {};
     if (fs.existsSync(fPath)) {
