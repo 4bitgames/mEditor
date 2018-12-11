@@ -49,6 +49,6 @@ app.post('/download/:projectID', jsonParser, function (req, res) {
     res.send(outputData);
 });
 
-app.listen(port, function () {
+app.listen(process.env.PORT || port, function () {
     console.log(`Example app listening on port ${port}!`);
 });
