@@ -25,6 +25,7 @@ app.post('/upload/:projectID', jsonParser, function (req, res) {
 
     fs.writeFileSync(fPath, JSON.stringify(projectData, null, 2));
 
+    console.log("Upload:", fPath)
     res.send(outputData);
 });
 
@@ -46,9 +47,10 @@ app.post('/download/:projectID', jsonParser, function (req, res) {
     }
 
     //res.send(JSON.stringify(outputData));
+    console.log("Donwload:", fPath)
     res.send(outputData);
 });
 
 app.listen(port, function () {
-    console.log(`Example app listening on port ${port}!`);
+    console.log(`mEditor backend listening on port ${port}!`);
 });
