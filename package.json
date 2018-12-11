@@ -1,0 +1,15 @@
+{
+  "name": "meditor",
+  "version": "1.0.0",
+  "description": "Meditor",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Simen Setrom",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
