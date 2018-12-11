@@ -25,10 +25,6 @@ app.post('/upload/:projectID', jsonParser, function (req, res) {
 
     fs.writeFileSync(fPath, JSON.stringify(projectData, null, 2));
 
-    fs.writeFile(fPath, JSON.stringify(projectData, null, 2), function(error){
-        console.log(error)
-    })
-
     console.log("Upload:", fPath)
     res.send(outputData);
 });
@@ -41,6 +37,7 @@ app.post('/download/:projectID', jsonParser, function (req, res) {
     let projectData = {};
     if (fs.existsSync(fPath)) {
         projectData = JSON.parse(fs.readFileSync(fPath));
+        console.log("projectData", projectData)
     }
 
     let outputData = {};
