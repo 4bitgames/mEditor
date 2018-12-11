@@ -1,7 +1,7 @@
 const express    = require('express');
 const fs         = require('fs')
 const app        = express();
-const port       = 25565;
+const port       = process.env.PORT || 25565;
 const jsonParser = require('body-parser').json();
 
 app.post('/upload/:projectID', jsonParser, function (req, res) {
@@ -49,6 +49,6 @@ app.post('/download/:projectID', jsonParser, function (req, res) {
     res.send(outputData);
 });
 
-app.listen(process.env.PORT || port, function () {
+app.listen(port, function () {
     console.log(`Example app listening on port ${port}!`);
 });
