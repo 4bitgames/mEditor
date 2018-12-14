@@ -5,7 +5,14 @@ const port       = process.env.PORT || 25565;
 const jsonParser = require('body-parser').json();
 var client = require('redis').createClient(process.env.REDIS_URL);
 
-app.post('/upload/:projectID', jsonParser, function (req, res) {
+const {promisify} = require('util');
+const getAsync = promisify(client.get).bind(client);
+
+client.on("error", function (err) {
+    console.log("Error " + err);
+});
+
+app.post('/upload/:projectID', jsonParser, async function (req, res) {
     const projectID = req.params.projectID;
     const fPath     = `files/${projectID}.json`;
     const newData   = req.body;
@@ -13,6 +20,8 @@ app.post('/upload/:projectID', jsonParser, function (req, res) {
     let projectData = {};
     if (fs.existsSync(fPath)) {
         projectData = JSON.parse(fs.readFileSync(fPath));
+        client.set(projectID, JSON.stringify({"a":4}));
+        console.log(await getAsync(projectID))
     }
 
     let outputData = {};
@@ -33,7 +42,7 @@ app.post('/upload/:projectID', jsonParser, function (req, res) {
     res.send(outputData);
 });
 
-app.post('/download/:projectID', jsonParser, function (req, res) {
+app.post('/download/:projectID', jsonParser, async function (req, res) {
     const projectID = req.params.projectID;
     const fPath     = `files/${projectID}.json`;
     const manifest  = req.body;
