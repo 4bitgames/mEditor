@@ -3,6 +3,7 @@ const fs         = require('fs')
 const app        = express();
 const port       = process.env.PORT || 25565;
 const jsonParser = require('body-parser').json();
+var client = require('redis').createClient(process.env.REDIS_URL);
 
 app.post('/upload/:projectID', jsonParser, function (req, res) {
     const projectID = req.params.projectID;
@@ -22,6 +23,8 @@ app.post('/upload/:projectID', jsonParser, function (req, res) {
             outputData[box] = projectData[box]
         }
     }
+
+    console.log("client",client)
 
     fs.writeFileSync(fPath, JSON.stringify(projectData, null, 2));
     console.log("writeFileSync", projectData)
