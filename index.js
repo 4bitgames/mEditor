@@ -1,7 +1,7 @@
 const express    = require('express');
 const fs         = require('fs')
 const app        = express();
-const port       = process.env.PORT || 25565;
+const port       = process.argv[2] || 25565;
 const jsonParser = require('body-parser').json();
 
 app.post('/upload/:projectID', jsonParser, function (req, res) {
